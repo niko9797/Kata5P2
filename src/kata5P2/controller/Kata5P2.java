@@ -5,13 +5,15 @@
  */
 package kata5P2.controller;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
 import kata5P2.model.Histogram;
 import kata5P2.model.Mail;
 import kata5P2.view.HistogramDisplay;
 import kata5P2.view.MailHistogramBuilder;
-import kata5P2.view.MailListReader;
+import kata5P2.view.MailListReaderBBDD;
 
 /**
  *
@@ -21,6 +23,7 @@ public class Kata5P2 {
 
     /**
      * @param args the command line arguments
+     * @throws java.lang.Exception
      */
     
     public static void main(String[] args) throws Exception {
@@ -39,9 +42,8 @@ public class Kata5P2 {
         output();
     }
     
-    private void input() throws IOException {
-        filename = "/home/niko/NetBeansProjects/Kata5P2/src/kata5P2/controller/emails.txt";
-        mailList = MailListReader.read(filename);
+    private void input() throws IOException, FileNotFoundException, ClassNotFoundException, SQLException {
+        mailList = MailListReaderBBDD.read();
     }
     
     private void process() throws Exception {
